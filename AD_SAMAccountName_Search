@@ -1,5 +1,5 @@
 ###Provide target SAMAccountName.
-$SAM = Read-Host "Enter SAMAccountName attribute to search for (i.e. pjme015):"
+$SAM = Read-Host "Enter SAMAccountName attribute to search for (i.e. john.wick):"
 
 ###Call ASDI to filter search on object category, class, by SAMAccountName.
 $search = [adsisearcher]"(&(ObjectCategory=Person)(ObjectClass=User)(SAMAccountName=$SAM))"
