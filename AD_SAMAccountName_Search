@@ -13,6 +13,7 @@ foreach($user in $users) {
     $manager = $user.Properties['Manager']
     $notes = $user.Properties['Notes']
     $SAM = $user.Properties['SAMAccountName']
+    <---------------------->
     "CN: $CN"
     "Department: $DP"
     "Title: $title"
@@ -27,3 +28,5 @@ foreach($user in $users) {
 #Error handling
 #Banner!
 #Command line interface w/ options
+
+pause
