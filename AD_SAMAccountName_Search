@@ -13,7 +13,7 @@ foreach($user in $users) {
     $manager = $user.Properties['Manager']
     $notes = $user.Properties['Notes']
     $SAM = $user.Properties['SAMAccountName']
-    <---------------------->
+    "<---------------------->"
     "CN: $CN"
     "Department: $DP"
     "Title: $title"
