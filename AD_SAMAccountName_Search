@@ -1,8 +1,8 @@
 ###Provide target SAMAccountName.
-$SAM = Read-Host "Enter SAMAccountName attribute to search for (i.e. john.wick):"
+$LastName = Read-Host "Enter partial or full last name to search for (i.e. wick)"
 
 ###Call ASDI to filter search on object category, class, by SAMAccountName.
-$search = [adsisearcher]"(&(ObjectCategory=Person)(ObjectClass=User)(SAMAccountName=$SAM))"
+$search = [adsisearcher]"(&(ObjectCategory=Person)(ObjectClass=User)(CN=*$LastName*))"
 $users = $search.FindAll()
 
 ###For each qualifying object collect and print out relevant attributes.
@@ -12,11 +12,13 @@ foreach($user in $users) {
     $title = $user.Properties['Title']
     $manager = $user.Properties['Manager']
     $notes = $user.Properties['Notes']
+    $SAM = $user.Properties['SAMAccountName']
     "CN: $CN"
     "Department: $DP"
     "Title: $title"
     "Notes: $notes"
     "Manger: $manager"
+    "SAM: $SAM"
 }
 
 ###ROADMAP/WISHLIST###
