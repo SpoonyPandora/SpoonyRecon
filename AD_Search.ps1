@@ -24,7 +24,7 @@ function showMenu()
 }
 
 
-###Search via CN
+###Search via last name via CN atrribute
 function getCN()
 {
     ###Provide target CN partial
@@ -95,9 +95,7 @@ function getSAM()
 ShowMenu
 
 ###ROADMAP/WISHLIST###
-#Wildcard/search capabilities
 #Suggested SAMAccountName targets if target isn't found
 #Error handling
-#empty search return handling
+#Empty search return handling
 #Banner!
-#Command line interface w/ options
