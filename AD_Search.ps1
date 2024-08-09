@@ -1,12 +1,28 @@
 ###Main menu
 function showMenu()
 {
-    $search_attribute = Read-Host "
+    $selection = Read-Host "
         Press (s) for sAMAccountName
         Press (n) for CommonName
         Press (q) to exit
         "
+    switch ($selection) {
+        "s" {
+            getSAM
+        }
+        "n" {
+            getCN
+        }
+        "q" {
+            exit
+        }
+        default {
+            "Try again..."
+            ShowMenu
+        }
+    }
 }
+
 
 ###Search via CN
 function getCN()
@@ -39,6 +55,7 @@ function getCN()
     Write-Host "
     End of search results..."
     Pause
+    ShowMenu
 }
 
 ###Search via SAM
@@ -72,33 +89,10 @@ function getSAM()
     Write-Host "
     End of search results..."
     Pause
+    ShowMenu
 }
 
-
-$selection = Read-Host "
-Press (s) for sAMAccountName
-Press (n) for CommonName
-Press (q) to exit
-
-"
-switch ($selection) {
-    "s" {
-        getSAM
-        }
-    "n" {
-        getCN
-        }
-    "q" {
-        exit
-        }
-}
-
-do {
-    showMenu
-    pause
-    }
-until ($selection -eq 'q')
-
+ShowMenu
 
 ###ROADMAP/WISHLIST###
 #Wildcard/search capabilities
