@@ -1,3 +1,13 @@
+###Main menu
+function showMenu()
+{
+    $search_attribute = Read-Host "
+        Press (s) for sAMAccountName
+        Press (n) for CommonName
+        Press (q) to exit
+        "
+}
+
 ###Search via CN
 function getCN()
 {
@@ -26,6 +36,9 @@ function getCN()
         "SAM: $SAM"
         "Enabled?: $enabled"
     }
+    Write-Host "
+    End of search results..."
+    Pause
 }
 
 ###Search via SAM
@@ -56,16 +69,19 @@ function getSAM()
         "SAM: $SAM"
         "Enabled?: $enabled"
     }
+    Write-Host "
+    End of search results..."
+    Pause
 }
 
 
-$search_attribute = Read-Host "
+$selection = Read-Host "
 Press (s) for sAMAccountName
 Press (n) for CommonName
 Press (q) to exit
 
 "
-switch ($search_attribute) {
+switch ($selection) {
     "s" {
         getSAM
         }
@@ -77,7 +93,12 @@ switch ($search_attribute) {
         }
 }
 
-pause
+do {
+    showMenu
+    pause
+    }
+until ($selection -eq 'q')
+
 
 ###ROADMAP/WISHLIST###
 #Wildcard/search capabilities
