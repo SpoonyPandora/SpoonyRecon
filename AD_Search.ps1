@@ -1,11 +1,14 @@
+###This script will perform a basic search against local AD based on a provided last name string (against the commmonName user attribute)
+###or on a provided user sAMAccountName string (against SAM user attribute.) Roadmap at the bottom. 
+
 ###Main menu
 function showMenu()
 {
-    $selection = Read-Host "
-        Press (s) for sAMAccountName
-        Press (n) for CommonName
-        Press (q) to exit
-        "
+    Write-Host "What attribute are you searching against?"
+    $selection = Read-Host "Press (s) for sAMAccountName
+Press (n) for CommonName
+Press (q) to exit"
+
     switch ($selection) {
         "s" {
             getSAM
@@ -99,3 +102,5 @@ ShowMenu
 #Error handling
 #Empty search return handling
 #Banner!
+#Add other attributes against which to search.
+#Turn into invokable module.
