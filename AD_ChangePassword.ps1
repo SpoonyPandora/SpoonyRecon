@@ -3,12 +3,22 @@
 ###GLOBAL VARIABLES
 
 $domain = Read-Host "Input domain (exclude trailng backslash)"
-$user = Read-Host "Input username"
+$user = Read-Host "Input username (sAMAccountName)"
 $old_Pass = Read-Host -AsSecureString "Input old password (case sensitive)"
 $new_Pass = Read-Host -AsSecureString "Input new password (case sensitive)"
 $confirm_new_Pass = Read-Host -AsSecureString "Confirm new password"
 
 ###GLOBAL FUNCTIONS
+
+function Verify-User {
+  $search = [adsisearcher]"(&(ObjectCategory=Person)(ObjectClass=User)(sAMAccountName=$user))"
+  $false = ''
+  if ($search) {true}
+    Write-Host "sAMAccountName verified, continuning..."
+  else
+    Write-Host "User account $domain\$user does not exist."
+    Pause
+}
 
 function Compare-passwordValues {
   $BSTR_p1 = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($new_Pass)
@@ -21,6 +31,7 @@ function Compare-passwordValues {
     }
   Else {
     Write-Host "New and confirm password values do not match!"
+    Pause
     Exit}
 }
 
@@ -44,6 +55,7 @@ function Change-userPassword {
 ###Check for matching $new_Pass and $confirm_new_Pass values via Compare-passwordValues. Pass user value to Verify-User, confirm user against AD, if valid then change password.
 
 Compare-passwordValues -ErrorAction Stop
+Verify-User -ErrorAction Stop
 Change-userPassword
 
 
