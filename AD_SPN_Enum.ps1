@@ -1,4 +1,5 @@
 ###Enumerate SPNS
+###This is currently not my own work, it is a generic script pulled from somewhere else. I plan on reworking it and implementing it as part of the SpoonyRecon AD suite.
 
 #Set Search
 cls
