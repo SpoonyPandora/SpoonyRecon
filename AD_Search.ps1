@@ -1,5 +1,5 @@
 ###This script will perform a basic search against local AD based on a provided last name string (against the commmonName user attribute)
-###or on a provided user sAMAccountName string (against SAM user attribute.) Roadmap at the bottom. 
+###or on a provided user sAMAccountName string (against SAM user attribute.) Roadmap at the bottom.
 
 ###Main menu
 function showMenu()
@@ -45,7 +45,6 @@ function getCN()
         $manager = $user.Properties['Manager']
         $notes = $user.Properties['Notes']
         $SAM = $user.Properties['SAMAccountName']
-        $enabled = $user.Properties['enabled']
         "<---------------------->"
         "CN: $CN"
         "Department: $DP"
@@ -53,7 +52,6 @@ function getCN()
         "Notes: $notes"
         "Manger: $manager"
         "SAM: $SAM"
-        "Enabled?: $enabled"
     }
     Write-Host "
     End of search results..."
@@ -79,7 +77,6 @@ function getSAM()
         $manager = $user.Properties['Manager']
         $notes = $user.Properties['Notes']
         $SAM = $user.Properties['SAMAccountName']
-        $enabled = $user.Properties['enabled']
         "<---------------------->"
         "CN: $CN"
         "Department: $DP"
@@ -87,7 +84,6 @@ function getSAM()
         "Notes: $notes"
         "Manger: $manager"
         "SAM: $SAM"
-        "Enabled?: $enabled"
     }
     Write-Host "
     End of search results..."
