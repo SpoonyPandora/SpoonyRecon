@@ -3,9 +3,9 @@
 $class = Read-Host "Desired object class"
 $string = Read-Host "Enter string to search against"
 
-$searcher = [adsisearcher]"(&(objectclass=$class)(name=*$string*))"
+$searcher = [adsisearcher]"(&(objectclass=$class)(cn=*$string*))"
 $group = $searcher.FindAll()
-$searcher.FindAll() | Measure-Object
+$count = ($searcher.FindAll() | Measure-Object).count
 
 if ($group -ne $null) {
     foreach ($object in $group) {
@@ -21,3 +21,4 @@ if ($group -ne $null) {
     Write-Host "Object not found searching against wildcard string '$string'."
 }
 
+Write-Host "Count : $count objects found."
